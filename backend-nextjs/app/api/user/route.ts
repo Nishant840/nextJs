@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+
 import { NextRequest } from "next/server"
+import client from "@/db"
 
-
-const client = new PrismaClient();
 export async function GET(req:NextRequest){
     // database logic
     const user = await client.user.findFirst()

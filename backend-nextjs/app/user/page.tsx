@@ -1,9 +1,8 @@
 
-import { PrismaClient } from "@prisma/client";
-
 // do not make backend call if it is a serverside component then directly use db logic using prisma
 // if it ia a client component then do backend call
-const client = new PrismaClient();
+import client from "@/db"
+
 export async function fetchData(){
     // database logic
     const user = await client.user.findFirst()
