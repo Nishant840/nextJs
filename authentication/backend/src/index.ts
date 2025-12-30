@@ -4,10 +4,15 @@ import cors from "cors"
 import jwt from "jsonwebtoken"
 import type { JwtPayload } from "jsonwebtoken"
 import path from "path"
+import { fileURLToPath } from "url"
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const JWT_SECRET = "test123"
 
 const app = express();
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
@@ -36,7 +41,7 @@ app.get("/user", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-    res.cookie("token", "ads");
+    res.clearCookie("token");
     res.json({
         message: "Logged out!"
     })
