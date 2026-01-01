@@ -56,5 +56,8 @@ export const NEXT_AUTH = {
             session.user.id = token.sub
             return session;
         }
+    },
+    pages:{
+        signIn: "/signin"
     }
 }
