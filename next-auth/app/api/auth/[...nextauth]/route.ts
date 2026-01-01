@@ -36,7 +36,24 @@ const handler = NextAuth({
             }
         })
     ],
-    secret: process.env.NEXTAUTH_SECRET
+    secret: process.env.NEXTAUTH_SECRET,
+    callbacks:{
+        signIn: ({user})=>{
+            if(user.email == "random@gmail.com"){
+                return false
+            }
+            return true
+        },
+        jwt: ({token, user})=>{
+            // do changes in token 
+            console.log(token)
+            return token;
+        },
+        session: ({session, token, user}:any)=>{
+            session.user.id = token.userId
+            return session;
+        }
+    }
 });
 
 export const GET = handler;
